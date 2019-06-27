@@ -1,1 +1,1 @@
-LAARIS-Offline-Generator
+LaarisOfflineLicenseGenerator
