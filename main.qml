@@ -1,7 +1,7 @@
 import QtQuick 2.9
-import QtQuick.Window 2.2
+import QtQuick.Window 2.12
 //import QtQuick.VirtualKeyboard 2.2
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.12
 import com.ligen 1.0
 
 Window {
@@ -113,6 +113,30 @@ Window {
         }
 
         Text {
+            id: softwareText
+            width: parent.width - 16
+            height: 26
+            color: "#00FFFF"
+            text: qsTr("Software")
+            font.pixelSize: 16
+        }
+
+        ComboBox {
+            id: comboBox
+            width: 300
+            height: 26
+            textRole: "key"
+            model: ListModel {
+                id: softwareItem
+                ListElement { key: "LAARIS Games One"; value: "Laaris Games One" }
+                ListElement { key: "Warp Show Player"; value: "Warp Show Player" }
+                ListElement { key: "tSlice Frame Designer"; value: "tSlice Frame Designer" }
+            }
+            onCurrentIndexChanged: ligen.software = softwareItem.get(currentIndex).value
+            KeyNavigation.tab: cameraType
+        }
+
+        Text {
             id: deviceText
             width: parent.width - 16
             height: 26
@@ -122,8 +146,7 @@ Window {
         }
 
         ComboBox {
-            id: comboBox
-            //currentIndex: 1
+            id: cameraType
             width: 100
             height: 26
             textRole: "key"

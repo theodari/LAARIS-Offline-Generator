@@ -8,7 +8,8 @@
 
 void cLicenseGenerator::generate()
 {
-    QString source = QString("Laaris Games One,%1,%2,%3,%4")
+    QString source = QString("%1,%2,%3,%4,%5")
+            .arg(_software)
             .arg(_sensorType)
             .arg(_serial).arg(_name).arg(_company);
     QByteArray ii = QCryptographicHash::hash(source.toUtf8(), QCryptographicHash::Algorithm::Sha3_256);
@@ -16,7 +17,7 @@ void cLicenseGenerator::generate()
 
     QString t;
      t+= QString("    {\n\n");
-     t += QString("        \"Product name\" : \"Laaris Games One\",\n");
+     t += QString("        \"Product name\" : \"%1\",\n").arg(_software);
      t += QString("        \"User\" : \"%1\",\n").arg(_name);
      t += QString("        \"Company\" : \"%1\",\n").arg(_company);
      t += QString("        \"Sensor type\" : \"%1\",\n").arg(_sensorType);
@@ -41,6 +42,12 @@ QString cLicenseGenerator::company()
 
 void cLicenseGenerator::setCompany(QString inCompany)
 { _company = inCompany; }
+
+QString cLicenseGenerator::software()
+{ return _software; }
+
+void cLicenseGenerator::setSoftware(QString inSoftware)
+{ _software = inSoftware; }
 
 QString cLicenseGenerator::sensorType()
 { return _sensorType; }
