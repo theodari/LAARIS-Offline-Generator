@@ -16,7 +16,7 @@ void cLicenseGenerator::generate()
     _licenseCode = QString("%1%2").arg(QString(ii.toHex())).arg(QString(ii.toHex().count()));
 
     QString t;
-     t+= QString("    {\n\n");
+     t+= QString("    {\n");
      t += QString("        \"Product name\" : \"%1\",\n").arg(_software);
      t += QString("        \"User\" : \"%1\",\n").arg(_name);
      t += QString("        \"Company\" : \"%1\",\n").arg(_company);
