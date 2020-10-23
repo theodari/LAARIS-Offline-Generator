@@ -134,7 +134,12 @@ Window {
                 ListElement { key: "tSlice Gizmo Tweak";    value: "tSlice Gizmo Tweak" }
                 ListElement { key: "LAARIS Photo Tracker";  value: "LAARIS Photo Tracker" }
             }
-            onCurrentIndexChanged: ligen.software = softwareItem.get(currentIndex).value
+            onCurrentIndexChanged: {
+//                if (softwareItem.currentValue === "tSlice Gizmo Tweak")
+//                    cameraType.currentIndex = cameraType.indexOfValue("CID");
+//                console.log(cameraType.indexOfValue("CID"));
+                ligen.software = softwareItem.get(currentIndex).value = 2;
+            }
             KeyNavigation.tab: cameraType
         }
 
@@ -149,13 +154,14 @@ Window {
 
         ComboBox {
             id: cameraType
-            width: 100
+            width: 200
             height: 26
             textRole: "key"
             model: ListModel {
                 id: sensorTypeItem
                 ListElement { key: "Mako"; value: "MAKO" }
                 ListElement { key: "uEye"; value: "UEYE" }
+                ListElement { key: "Computer ID"; value: "CID" }
             }
             onCurrentIndexChanged: ligen.sensorType = sensorTypeItem.get(currentIndex).value
             KeyNavigation.tab: serial
@@ -166,7 +172,7 @@ Window {
             width: parent.width - 16
             height: 26
             color: "#00FFFF"
-            text: qsTr("Sensor serial number")
+            text: sensorTypeItem === "CID" ? qsTr("Computer ID") : qsTr("Sensor serial number")
             font.pixelSize: 16
         }
 
