@@ -128,9 +128,11 @@ Window {
             textRole: "key"
             model: ListModel {
                 id: softwareItem
-                ListElement { key: "LAARIS Games One"; value: "Laaris Games One" }
-                ListElement { key: "Warp Show Player"; value: "Warp Show Player" }
+                ListElement { key: "LAARIS Games One";      value: "Laaris Games One" }
+                ListElement { key: "Warp Show Player";      value: "Warp Show Player" }
                 ListElement { key: "tSlice Frame Designer"; value: "tSlice Frame Designer" }
+                ListElement { key: "tSlice Gizmo Tweak";    value: "tSlice Gizmo Tweak" }
+                ListElement { key: "LAARIS Photo Tracker";  value: "LAARIS Photo Tracker" }
             }
             onCurrentIndexChanged: ligen.software = softwareItem.get(currentIndex).value
             KeyNavigation.tab: cameraType
