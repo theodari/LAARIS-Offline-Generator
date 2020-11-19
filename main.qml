@@ -138,7 +138,7 @@ Window {
 //                if (softwareItem.currentValue === "tSlice Gizmo Tweak")
 //                    cameraType.currentIndex = cameraType.indexOfValue("CID");
 //                console.log(cameraType.indexOfValue("CID"));
-                ligen.software = softwareItem.get(currentIndex).value = 2;
+                ligen.software = softwareItem.get(currentIndex).value;
             }
             KeyNavigation.tab: cameraType
         }
