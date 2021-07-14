@@ -132,7 +132,8 @@ Window {
                 ListElement { key: "Warp Show Player";      value: "Warp Show Player" }
                 ListElement { key: "tSlice Frame Designer"; value: "tSlice Frame Designer" }
                 ListElement { key: "tSlice Gizmo Tweak";    value: "tSlice Gizmo Tweak" }
-                ListElement { key: "LAARIS Photo Tracker";  value: "LAARIS Photo Tracker" }
+                ListElement { key: "TrackNLight";  value: "TrackNLight" }
+                ListElement { key: "TrackNBlind";  value: "TrackNBlind" }
             }
             onCurrentIndexChanged: {
 //                if (softwareItem.currentValue === "tSlice Gizmo Tweak")

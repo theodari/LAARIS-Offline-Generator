@@ -9,11 +9,10 @@
 void cLicenseGenerator::generate()
 {
     QString source = QString("%1,%2,%3,%4,%5")
-            .arg(_software)
-            .arg(_sensorType)
-            .arg(_serial).arg(_name).arg(_company);
-    QByteArray ii = QCryptographicHash::hash(source.toUtf8(), QCryptographicHash::Algorithm::Sha3_256);
-    _licenseCode = QString("%1%2").arg(QString(ii.toHex())).arg(QString(ii.toHex().count()));
+            .arg(_software, _sensorType, _serial, _name, _company);
+    QByteArray ii = QCryptographicHash::hash(source.toUtf8(),
+                                             QCryptographicHash::Algorithm::Sha3_256);
+    _licenseCode = QString("%1%2").arg(QString(ii.toHex()), QString(ii.toHex().count()));
 
     QString t;
      t+= QString("    {\n");
@@ -31,38 +30,33 @@ void cLicenseGenerator::generate()
     clipboard->setText(t);
 }
 
-QString cLicenseGenerator::name()
-{ return _name; }
+QString cLicenseGenerator::name() { return _name; }
+void cLicenseGenerator::setName(QString inName) { _name = inName; }
 
-void cLicenseGenerator::setName(QString inName)
-{ _name = inName; }
+QString cLicenseGenerator::company() { return _company; }
+void cLicenseGenerator::setCompany(QString inCompany) { _company = inCompany; }
 
-QString cLicenseGenerator::company()
-{ return _company; }
+QString cLicenseGenerator::software() { return _software; }
+void cLicenseGenerator::setSoftware(QString inSoftware) { _software = inSoftware; }
 
-void cLicenseGenerator::setCompany(QString inCompany)
-{ _company = inCompany; }
-
-QString cLicenseGenerator::software()
-{ return _software; }
-
-void cLicenseGenerator::setSoftware(QString inSoftware)
-{ _software = inSoftware; }
-
-QString cLicenseGenerator::sensorType()
-{ return _sensorType; }
-
+QString cLicenseGenerator::sensorType() { return _sensorType; }
 void cLicenseGenerator::setSensorType(QString inSensorType)
-{ _sensorType = inSensorType; }
+{
+    _sensorType = inSensorType;
+    if (_sensorType == "CID")
+        setSerial(QSysInfo::machineUniqueId());
+}
 
-QString cLicenseGenerator::serial()
-{ return _serial; }
-
+QString cLicenseGenerator::serial() { return _serial; }
 void cLicenseGenerator::setSerial(QString inSerial)
-{ _serial = inSerial; }
+{
+    if (inSerial != _serial)
+    {
+        _serial = inSerial;
+        emit serialChanged();
+    }
+}
 
-QString cLicenseGenerator::generatedText()
-{ return _generatedText; }
-
+QString cLicenseGenerator::generatedText() { return _generatedText; }
 void cLicenseGenerator::setGeneratedText(QString inGeneratedText)
 { _generatedText = inGeneratedText; }
